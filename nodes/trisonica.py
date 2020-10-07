@@ -23,7 +23,8 @@ class Trisonica(object):
                     msg = trisonica_msg()
                     msg.header.stamp.secs = rospy.Time.now().secs
                     msg.header.stamp.nsecs = rospy.Time.now().nsecs
-
+                    msg.speed       = float( data.split('S ')[1].lstrip().split(' ')[0] )
+                    msg.direction   = float( data.split('D ')[1].lstrip().split(' ')[0])
                     msg.northsouth  = float( data.split('U ')[1].lstrip().split(' ')[0] )
                     msg.westeast    = float( data.split('V ')[1].lstrip().split(' ')[0] )
                     msg.updown      = float( data.split('W ')[1].lstrip().split(' ')[0] )
@@ -49,4 +50,3 @@ if __name__ == '__main__':
 
     trisonica = Trisonica(port=options.port, topic='/trisonica')
     trisonica.main()
-
