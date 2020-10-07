@@ -1,7 +1,12 @@
 Header header
 float32 speed
+float32 speed1
 float32 direction
 float32 northsouth
 float32 westeast
 float32 updown
 float32 temperature
+float64 pitch
+float64 roll
+float32 pressure
+float32 humidity

@@ -18,6 +18,7 @@ class Trisonica(object):
         rate = rospy.Rate(80) # Hz, trisonica set to 40 Hz
         while not rospy.is_shutdown():
             data = self.connection.readline()
+            print(data)
             if data is not None and len(data) > 10:
                 if data[0] == 'S':
                     msg = trisonica_msg()
@@ -29,7 +30,11 @@ class Trisonica(object):
                     msg.westeast    = float( data.split('V ')[1].lstrip().split(' ')[0] )
                     msg.updown      = float( data.split('W ')[1].lstrip().split(' ')[0] )
                     msg.temperature = float( data.split('T ')[1].lstrip().split(' ')[0] )
-
+                    msg.pressure = float( data.split('P ')[1].lstrip().split(' ')[0] )                
+                    msg.humidity = float( data.split('H ')[1].lstrip().split(' ')[0] )                
+                    msg.pitch = float( data.split('P ')[2].lstrip().split(' ')[0] )
+                    msg.roll = float( data.split('R ')[1].lstrip().split(' ')[0] )
+                    
                     self.publisher.publish(msg)
 
             rate.sleep()
