@@ -18,7 +18,6 @@ class Trisonica(object):
         rate = rospy.Rate(80) # Hz, trisonica set to 40 Hz
         while not rospy.is_shutdown():
             data = self.connection.readline()
-            print(data)
             if data is not None and len(data) > 10:
                 if data[0] == 'S':
                     msg = trisonica_msg()
